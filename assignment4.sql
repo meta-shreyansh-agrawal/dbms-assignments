@@ -28,6 +28,28 @@ DELIMITER ;
 
 -- Session 4 Assignment 2
 
+DELIMITER $$
+
+CREATE PROCEDURE average(input_month int,input_year int)
+begin
+
+select p.id,p.name,avg(oi.quantity*p.price) as average_sales from order_items oi join products p on oi.product_id = p.id where month(oi.created_at) = input_month and year(oi.created_at) = input_year group by p.id; 
+
+end$$
+
+DELIMITER ; 
+
+DELIMITER $$
+CREATE PROCEDURE order_details(start_date Date,end_date Date)
+begin
+if start_date > end_date then set start_date = date_format(end_date,'%Y-%m-01'); 
+end if; 
+
+select * from orders;
+
+end$$
+
+DELIMITER ; 
 
 
 
