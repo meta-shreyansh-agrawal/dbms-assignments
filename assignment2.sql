@@ -183,7 +183,7 @@ INSERT INTO order_items (order_id, product_id, quantity, status) VALUES
 (9, 9, 1, 'Shipped'),
 (10, 10, 1, 'Pending');
 
-select p.id as id ,p.name as title ,c.name category_title ,p.price as price from products p left join product_categories pc on pc.product_id = p.id left join categories c on c.id = pc.category_id where p.stock_quantity > 0 order by created_at ASC; 
+select p.id as id ,p.name as title ,c.name category_title ,p.price as price from products p left join product_categories pc on pc.product_id = p.id left join categories c on c.id = pc.category_id where p.stock_quantity > 0 order by created_at DESC; 
 
 select p.id,p.name,p.description,p.price,p.stock_quantity from products p left join images i on p.id = i.product_id where i.product_id is null; 
 
