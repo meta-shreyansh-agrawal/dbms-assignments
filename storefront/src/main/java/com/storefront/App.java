@@ -10,17 +10,7 @@ import com.storefront.fourthassignment.CategoryPojo;
 import com.storefront.secondassignment.ImageDao;
 import com.storefront.thirdassignment.ProductDao;
 
-/**
- * Hello world!
- */
 public final class App {
-    private App() {
-    }
-
-    /**
-     * Says hello to the world.
-     * @param args The arguments of the program.
-     */
     public static void main(String[] args) {
        Scanner scanner = new Scanner(System.in);
         int choice;
@@ -34,13 +24,12 @@ public final class App {
             System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
 
-            choice = scanner.nextInt();
-            scanner.nextLine();  // Clear buffer
+            choice = Utils.inputNumberInRange(scanner,1,5);
 
             switch (choice) {
                 case 1:
                     System.out.print("Enter User ID: ");
-                    int userId = scanner.nextInt();
+                    int userId = Utils.inputNaturalNumber(scanner);
                     ArrayList<OrderPojo> orders = OrderDao.getOrdersByUserId(userId);
                     if (orders.isEmpty()) {
                         System.out.println("No orders found for this user.");
@@ -66,8 +55,7 @@ public final class App {
 
                 case 3:
                     System.out.print("Enter Product ID: ");
-                    int productId = scanner.nextInt();
-                    scanner.nextLine(); // Clear buffer
+                    int productId = Utils.inputNaturalNumber(scanner);
                     System.out.println("Enter Image URLs (comma-separated): ");
                     String[] urls = scanner.nextLine().split(",");
                     ArrayList<String> imageUrls = new ArrayList<>();
