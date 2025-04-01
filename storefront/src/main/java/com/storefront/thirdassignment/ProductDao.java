@@ -11,8 +11,10 @@ public class ProductDao {
         int count = 0; 
         Connection connection = DatabaseConnector.connect();
         try {
-            String query = "delete from products where p.id not in(SELECT * FROM products p join order_items oi on p.id=oi.product_id join order o on o.id = oi.order_id join user u on u.id = o.user_id where u.role = 'Shopper' and o.created_at > now()-interval 12 month);"; 
+            connection.prepareStatement("SET SQL_SAFE_UPDATES = 0;"); 
+            String query = "DELETE p FROM products p LEFT JOIN order_items oi ON p.id = oi.product_id LEFT JOIN orders o ON o.id = oi.order_id LEFT JOIN users u ON u.id = o.user_id WHERE (u.role = 'Shopper' AND o.created_at > NOW() - INTERVAL 12 MONTH) IS NULL;\n"; 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            connection.prepareStatement("SET SQL_SAFE_UPDATES = 1;"); 
             count = preparedStatement.executeUpdate(); 
             connection.close();
         } catch (SQLException e) {

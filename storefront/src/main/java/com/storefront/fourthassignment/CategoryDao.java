@@ -1,7 +1,6 @@
 package com.storefront.fourthassignment;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,18 +8,6 @@ import java.util.ArrayList;
 import com.storefront.DatabaseConnector;
 
 public class CategoryDao {
-
-    static class CategoryPojo{
-        int id; 
-        String name; 
-        int childCount; 
-
-        CategoryPojo(int id, String name,int childCount){
-            this.id = id; 
-            this.name = name; 
-            this.childCount = childCount; 
-        }
-    }
 
     public static ArrayList<CategoryPojo> getChildCategoryCount(){
         Connection connection = DatabaseConnector.connect();

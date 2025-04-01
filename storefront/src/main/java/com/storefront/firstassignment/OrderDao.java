@@ -16,7 +16,7 @@ public class OrderDao {
         ArrayList<OrderPojo> orders = new ArrayList<>(); 
 
         try {
-            String query = "SELECT o.id as id,o.created_at as date,sum(oi.quantity*p.price) as total FROM orders o join order_items oi ON o.id = oi.order_id JOIN products p on oi.product_id = p.id WHERE user_id=? AND o.status='Shipped' GROUP BY o.id ORDER BY created_at;"; 
+            String query = "SELECT o.id as id,o.created_at as date,sum(oi.quantity*p.price) as total FROM orders o join order_items oi ON o.id = oi.order_id JOIN products p on oi.product_id = p.id WHERE user_id=? AND o.status='Shipped' GROUP BY o.id ORDER BY o.created_at;"; 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, userId);
             ResultSet set = preparedStatement.executeQuery(); 
