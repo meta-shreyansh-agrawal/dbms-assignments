@@ -32,7 +32,7 @@ SET SQL_SAFE_UPDATES = 0;
 update products set status = 'Inactive' where id not in ( select distinct product_id from order_items oi where oi.created_at > now() - interval 90 day); 
 SET SQL_SAFE_UPDATES = 1;
 
-select * from categories c join product_categories pc on c.id = pc.category_id join products p on p.id = pc.product_id where c.name = "Computers"; 
+select * from categories c join product_categories pc on c.id = pc.category_id join products p on p.id = pc.product_id where c.name like "%Computers%"; 
 
 select product_id,p.name, count(*) as quantity from orders o join order_items oi on o.id = oi.order_id join products p on oi.product_id = p.id where o.status = 'Canceled' group by product_id order by quantity desc limit 10; 
 
