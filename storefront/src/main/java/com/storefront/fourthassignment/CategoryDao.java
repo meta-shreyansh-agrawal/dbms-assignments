@@ -13,7 +13,7 @@ public class CategoryDao {
         Connection connection = DatabaseConnector.connect();
         ArrayList<CategoryPojo> categories = new ArrayList<>(); 
         try {
-            String query = " select a.id,a.name,count(*) as child from categories a join categories b on a.id = b.parent_id group by a.id;"; 
+            String query = " select a.id,a.name,count(*) as child from categories a join categories b on a.id = b.parent_id group by a.id  order by a.name;"; 
             ResultSet set = connection.prepareStatement(query).executeQuery();
             while(set.next()){
                 int id = set.getInt("id"); 
