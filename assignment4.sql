@@ -54,9 +54,9 @@ DELIMITER ;
 
 create index order_index on orders(user_id,status); 
 
-create index product_index on products(name);
+create index product_index on products(created_at);
 
-create index category_index on categories(name,parent_id);  
+create index category_index on categories(parent_id);  
 
 
 
