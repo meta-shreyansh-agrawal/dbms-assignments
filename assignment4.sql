@@ -52,9 +52,11 @@ end$$
 DELIMITER ; 
 
 
+create index order_index on orders(user_id,status); 
 
+create index product_index on products(name);
 
-
+create index category_index on categories(name,parent_id);  
 
 
 
