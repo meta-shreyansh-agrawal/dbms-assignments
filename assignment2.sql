@@ -187,7 +187,7 @@ select p.id as id ,p.name as title ,c.name category_title ,p.price as price from
 
 select p.id,p.name,p.description,p.price,p.stock_quantity from products p left join images i on p.id = i.product_id where i.product_id is null; 
 
-select a.id, a.name as category, b.name as parent_category from categories a, categories b where a.parent_id = b.id order by b.name;  
+select c.id,c.name as title,coalesce(pc.name,"Top Category") as parent_title from categories pc right join categories c on c.parent_id = pc.id order by pc.name,c.name ; 
 
 select b.id , b.name as title, c.name as parent_category_title from categories a right join categories b on a.parent_id = b.id left join categories c on b.parent_id = c.id where a.parent_id is null; 
 
